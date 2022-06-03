@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Titulo</th>
+            <th scope="col">Cantidad Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if prestamos %}
+            {% for prestar in prestamos %}
+                <tr>
+                    <td>{{ prestar.ejemplar__libro__titulo }}</td>
+                    <td>{{ prestar.CantidadTotal }}</td>
+                </tr>
+            {% endfor %}
+          {% else %}
+              <h3>No existen registros</h3>
+           {% endif %}
+        </tbody>
+      </table>
+    
+{% endblock %}

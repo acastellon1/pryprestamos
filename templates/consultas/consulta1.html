@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Fecha prestamo</th>
+            <th scope="col">Fecha devolucion</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Localizacion</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if prestamos %}
+            {% for prestar in prestamos %}
+                <tr>
+                    <td>{{ prestar.fechaPres }}</td>
+                    <td>{{ prestar.fechaDev }}</td>
+                    <td>{{ prestar.usuario__nombre }}</td>
+                    <td>{{ prestar.ejemplar__localizacion }}</td>
+                    <td>{{ prestar.ejemplar__libro__titulo }}</td>
+                    <td>{{ prestar.ejemplar__libro__autor__nombre }}</td>
+                </tr>
+            {% endfor %}
+          {% else %}
+              <h3>No existen registros</h3>
+           {% endif %}
+        </tbody>
+      </table>
+    
+{% endblock %}

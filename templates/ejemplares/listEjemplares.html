@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+    
+
+    <h1 class="pull-right">
+        <div class="row">
+            <div class="col-4">
+                <h3> Listado de ejemplares </h3>
+            </div>
+
+            <div class="col-4">
+
+            </div>
+
+            <div class="col-4">
+                <a href="{% url 'prestar:ejemplarCreate' %}" class="btn btn-primary pull-right" style="margin-top: -10px; margin-bottom: 5px;">Adicionar</a>
+            </div>
+        </div>
+        
+    </h1>
+
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Localizacion</th>
+            <th scope="col">Libro</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if ejemplares %}
+            {% for ejemplar in ejemplares %}
+                <tr>
+                    <td>{{ ejemplar.localizacion }}</td>
+                    <td>{{ ejemplar.libro }}</td>
+                    <td class="d-flex justify-content-center">
+                        <a class="btn btn-primary btn-warning btn-xs" href="{% url 'prestar:ejemplarEdit' ejemplar.id %}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+  
+                        <a class="btn btn-primary btn-dange btn-xs" href="{% url 'prestar:ejemplarElim' ejemplar.id %}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                </tr>
+            {% endfor %}
+          {% else %}
+              <h3>No existen registros</h3>
+           {% endif %}
+        </tbody>
+      </table>
+    
+{% endblock %}
